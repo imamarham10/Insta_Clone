@@ -29,7 +29,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
-        android:text="Hom"
+        android:text="HomE"
         android:textAlignment="center"
         android:textSize="14dp" />
 
