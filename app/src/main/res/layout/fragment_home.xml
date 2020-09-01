@@ -28,10 +28,10 @@
                 <!--for sending message -->
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:src="@drawable/send_icon"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
                     android:layout_centerInParent="true"
-                    android:layout_alignParentRight="true"/>
+                    android:src="@drawable/send_icon" />
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
