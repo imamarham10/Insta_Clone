@@ -1,9 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back_ui"
+    android:orientation="vertical"
+    android:padding="30dp"
     tools:context=".Signup">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/Insta_logo_Signup"
+        android:layout_width="130dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/instagram"
+        android:tint="@android:color/white"
+        android:layout_centerHorizontal="true"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/Fullname_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Insta_logo_Signup"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="2dp"
+        app:boxBackgroundColor="@android:color/white"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusBottomEnd="3dp"
+        app:boxCornerRadiusBottomStart="3dp"
+        app:boxCornerRadiusTopEnd="3dp"
+        app:boxCornerRadiusTopStart="3dp"
+        app:boxStrokeColor="@android:color/black"
+        app:boxStrokeWidth="2dp"
+        app:hintAnimationEnabled="true"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Full Name"
+            android:inputType="textPersonName"
+            android:textAlignment="gravity"
+            android:gravity="center_vertical" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/Email_Edit_Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Fullname_signup"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="2dp"
+        app:boxBackgroundColor="@android:color/white"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusBottomEnd="3dp"
+        app:boxCornerRadiusBottomStart="3dp"
+        app:boxCornerRadiusTopEnd="3dp"
+        app:boxCornerRadiusTopStart="3dp"
+        app:boxStrokeColor="@android:color/black"
+        app:boxStrokeWidth="2dp"
+        app:hintAnimationEnabled="true"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email Address"
+            android:inputType="textEmailAddress"
+            android:textAlignment="gravity"
+            android:gravity="center_vertical" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/Password_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Email_Edit_Text"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:padding="2dp"
+        app:boxBackgroundColor="@android:color/white"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusBottomEnd="3dp"
+        app:boxCornerRadiusBottomStart="3dp"
+        app:boxCornerRadiusTopEnd="3dp"
+        app:boxCornerRadiusTopStart="3dp"
+        app:boxStrokeColor="@android:color/black"
+        app:boxStrokeWidth="2dp"
+        app:hintAnimationEnabled="true"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/colorAccent"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textAlignment="gravity"
+            android:gravity="center_vertical" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <RadioGroup
+        android:id="@+id/gender_singup"
+        android:layout_below="@+id/Password_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="13dp"
+        android:padding="10dp"
+        android:background="@android:color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gender: "
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Male"
+            android:textSize="20sp"
+            />
+
+        <RadioButton
+            android:id="@+id/female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:text="Female"
+            android:textSize="20sp" />
+    </RadioGroup>
+
+    <Button
+        android:layout_below="@+id/gender_singup"
+        android:id="@+id/buRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/background"
+        android:gravity="center"
+        android:text="Register"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/textView_signup"
+            android:layout_width="128dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Already have an account?"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buSignin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center|left"
+            android:paddingLeft="2dp"
+            android:text="Sign Up"
+            android:textColor="@color/colorBlue"/>
+    </LinearLayout>
+
+
+
+</RelativeLayout>
