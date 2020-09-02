@@ -2,7 +2,8 @@
 <resources>
     <color name="colorPrimary">#5C32C7</color>
     <color name="colorPrimaryDark">#5C32C7</color>
-    <color name="colorAccent">#ff68a5</color>
-    <color name="colorBlack">#c2bdbf</color>
+    <color name="colorPink">#ff68a5</color>
+    <color name="colorBachground">#c2bdbf</color>
+    <color name="colorAccent">@android:color/black</color>
     <color name="colorBlue">#5552FF</color>
 </resources>

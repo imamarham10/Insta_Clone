@@ -15,33 +15,32 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity()
 {
-    internal var selectedFragment :Fragment?=null
+
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener {
             item ->
         when (item.itemId) {
             R.id.nav_home -> {
-                selectedFragment = HomeFragment()
+                moveToFragment(HomeFragment())
+                return@OnNavigationItemSelectedListener true
             }
             R.id.nav_search -> {
-                selectedFragment = SearchFragment()
+                moveToFragment(SearchFragment())
+                return@OnNavigationItemSelectedListener true
             }
             R.id.nav_Addpost -> {
-                selectedFragment = AddpostFragment()
+                moveToFragment(AddpostFragment())
+                return@OnNavigationItemSelectedListener true
             }
             R.id.nav_notifications -> {
-
-                selectedFragment = NotificationsFragment()
+                moveToFragment(NotificationsFragment())
+                return@OnNavigationItemSelectedListener true
             }
             R.id.nav_profile -> {
-                selectedFragment = ProfileFragment()
+                moveToFragment(ProfileFragment())
+                return@OnNavigationItemSelectedListener true
             }
         }
-        if(selectedFragment!=null)
-        {
-            supportFragmentManager.beginTransaction().replace(
-                R.id.fragment_container,selectedFragment!!).commit()
 
-        }
 
         false
     }
@@ -52,7 +51,14 @@ class MainActivity : AppCompatActivity()
         setContentView(R.layout.activity_main)
         var navView: BottomNavigationView = findViewById(R.id.nav_view)
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container,HomeFragment()).commit()
-    }
 
+        //whenever user start the app, this will be shown as default activity
+        moveToFragment(HomeFragment())
+    }
+    private fun moveToFragment (fragment: Fragment)
+    {
+        val fragmentTrans = supportFragmentManager.beginTransaction()
+        fragmentTrans.replace(R.id.fragment_container,fragment)
+        fragmentTrans.commit()
+    }
 }
