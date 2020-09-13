@@ -48,7 +48,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/Email_Edit_Text"
+        android:id="@+id/Email_SignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/Fullname_signup"
@@ -81,7 +81,7 @@
         android:id="@+id/Password_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Email_Edit_Text"
+        android:layout_below="@+id/Email_SignUp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
@@ -155,7 +155,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="@drawable/background"
+        android:background="@drawable/ripple_button"
         android:gravity="center"
         android:text="Register"
         android:textColor="#FFFFFF"
@@ -170,13 +170,13 @@
         android:layout_alignParentBottom="true">
 
         <Space
-            android:layout_width="20dp"
+            android:layout_width="10dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
         <TextView
-            android:id="@+id/textView_signup"
-            android:layout_width="128dp"
+            android:id="@+id/textView_signin"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Already have an account?"
@@ -191,7 +191,7 @@
             android:fontFamily="sans-serif-black"
             android:gravity="center|left"
             android:paddingLeft="2dp"
-            android:text="Sign Up"
+            android:text="Sign IN"
             android:textColor="@color/colorBlue"/>
     </LinearLayout>
 

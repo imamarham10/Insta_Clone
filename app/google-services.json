@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "726089374936",
+    "firebase_url": "https://instagram-concept.firebaseio.com",
+    "project_id": "instagram-concept",
+    "storage_bucket": "instagram-concept.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:726089374936:android:55e8aba13ec7997da8cbad",
+        "android_client_info": {
+          "package_name": "com.example.insta_clone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "726089374936-grftojvai37dg1ndmg7tmbqusmbc4vk8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcRibfY932cwuRsHTR7TLCR9Hf-J6cSNY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "726089374936-grftojvai37dg1ndmg7tmbqusmbc4vk8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
