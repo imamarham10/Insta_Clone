@@ -39,6 +39,7 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tlEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email Address"
@@ -69,6 +70,7 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tlPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
@@ -89,6 +91,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginBottom="3dp"
         android:background="@drawable/ripple_button"
+        android:onClick="buSignIn"
         android:text="LOGIN"
         android:textColor="#F4F4F4" />
 

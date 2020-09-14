@@ -8,15 +8,15 @@ import android.text.TextUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_account_settings.*
 import kotlinx.android.synthetic.main.activity_signup.*
-
 
 
 class Signup : AppCompatActivity() {
     private var mAuth: FirebaseAuth? = null
+    private var database = FirebaseDatabase.getInstance()
+    private var myRef = database.reference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
@@ -24,90 +24,93 @@ class Signup : AppCompatActivity() {
         buSignin.setOnClickListener {
             startActivity(Intent(this, Signin::class.java))
         }
+        signup.setOnClickListener {
+            createAccount()
+        }
 
-       buRegister.setOnClickListener {
-           createAccount()
-       }
     }
 
     private fun createAccount() {
-        val fullName = Fullname_signup.editText.toString()
-        val email = Email_SignUp.editText.toString()
-        val username = Username_Edit_Text.editText.toString()
-        val password = Password_signup.editText.toString()
-        when {
-            TextUtils.isEmpty(fullName) -> {
-                Toast.makeText(this, "Full Name is required", Toast.LENGTH_LONG).show()
-            }
-            TextUtils.isEmpty(email) -> {
-                Toast.makeText(this, "Email is required", Toast.LENGTH_LONG).show()
-            }
-            TextUtils.isEmpty(username) -> {
-                Toast.makeText(this, "Username is required", Toast.LENGTH_LONG).show()
-            }
-            TextUtils.isEmpty(password) -> {
-                Toast.makeText(this, "Password is required", Toast.LENGTH_LONG).show()
-            }
-
-            else ->
-            {
-                /*val progessDialog = ProgressBar(this)
-                progessDialog.
-                progessDialog.setMessage("Please wait, this may take a while.")
-                progessDialog.setCanceledOnTouchOutside(false)
-                progessDialog.show()*/
-                mAuth!!.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(
-                        this
-                    ) { task ->
-                        if (task.isSuccessful) {
-                            saveUserInfo(fullName,username,email)
-                        } else {
-                           val message = task.exception.toString()
-                            Toast.makeText(this, "Error: $message",Toast.LENGTH_LONG).show()
-                            mAuth!!.signOut()
-                            //progessDialog.dismiss()
-                        }
-
-                        // ...
-                    }
-
-            }
+        var Gender:String?=null
+        val email = etEmail.text.toString()
+        val password = etPassword.text.toString()
+        val fullname = etFullName.text.toString()
+        if(male.isChecked())
+        {
+            Gender = "Male"
+        }
+        if(female.isChecked())
+        {
+            Gender = "Female"
+        }
+        if (Gender != null) {
+            signupToFirebase(email, password,fullname,Gender)
         }
     }
 
-    private fun saveUserInfo(fullName: String, username: String, email: String)
+    private fun signupToFirebase(email: String, password: String, fullname : String, gender: String)
     {
-        val currentUserID = FirebaseAuth.getInstance().currentUser!!.uid
-        val usersRef : DatabaseReference = FirebaseDatabase.getInstance().reference.child("Users")
-        val userMap = HashMap<String,Any>()
-        userMap["uid"] = currentUserID
-        userMap["fullName"] = currentUserID
-        userMap["username"] = currentUserID
-        userMap["email"] = currentUserID
-        userMap["bio"] = "hey,I am Arham, developer of this ig clone."
-        userMap["image"] = "https://firebasestorage.googleapis.com/v0/b/instagram-concept.appspot.com/o/Default%20Images%2Fprofile.png?alt=media&token=d0e20016-a4cc-4c50-a94c-b4981a72d412"
-        usersRef.child(currentUserID).setValue(userMap)
-            .addOnCompleteListener { task->
+        if (TextUtils.isEmpty(fullname))
+        {
+            Toast.makeText(applicationContext,"please enter your name",Toast.LENGTH_LONG).show()
+            return
+        }
+        if(TextUtils.isEmpty(email))
+        {
+            Toast.makeText(
+                applicationContext,
+            "Please Enter Email",
+            Toast.LENGTH_LONG
+            ).show()
+            return
+    }
+        if(TextUtils.isEmpty(password))
+        {
+            Toast.makeText(applicationContext,"Please Enter Password",Toast.LENGTH_LONG).show()
+            return
+        }
+        if(password.length <8)
+        {
+            Toast.makeText(applicationContext,"Password too short",Toast.LENGTH_LONG).show()
+            return
+        }
+        mAuth!!.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(
+                this
+            ) { task ->
                 if (task.isSuccessful)
                 {
-                   // progessDialog.dismiss()
-                    Toast.makeText(this,"Account has been created successfully",Toast.LENGTH_LONG).show()
+                   // var progressbar = ProgressBar(this.findViewById(R.id.progressbar))
+                    var currentuser = mAuth!!.currentUser
+                    Toast.makeText(applicationContext,"Account Created",Toast.LENGTH_LONG).show()
+                    //save in database
+                    var information = UserInfo(fullname,email,password,gender)
+                    myRef.child("Users").child(currentuser!!.uid).setValue(information)
 
-                    val intent = Intent(this,MainActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                    startActivity(intent)
-                    finish()
+
+                    LoadMain()
                 }
                 else
                 {
-                     val message = task.exception.toString()
-                     Toast.makeText(this,"Error $message",Toast.LENGTH_LONG)
-                    FirebaseAuth.getInstance().signOut()
-                   // progessDialog.dismiss()
+                    Toast.makeText(applicationContext,"Authentication Failed",Toast.LENGTH_LONG).show()
+
                 }
+
+                // ...
             }
-
     }
-}
 
+    private fun LoadMain()
+    {
+        var currentUser = mAuth!!.currentUser
+        if(currentUser!=null)
+        {
+            var intent = Intent(this,Signin::class.java)
+            startActivity(intent)
+            finish()
+
+        }
+    }
+
+
+}
